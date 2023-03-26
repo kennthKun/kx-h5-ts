@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { ConfigProvider } from 'kx_component';
+import zh_CN from 'kx_component/src/lib/locale/zh_CN'
+import { BrowserRouter } from 'react-router-dom';
+import VConsole from "vconsole";
+import { Provider } from 'react-redux';
+import { currentEnv } from "./consts/env"
+import Routes from './routes';
+import store from './store';
+import 'kx_component/dist/kx_component.min.css'
 import './App.css';
+import './reset.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  static getDerivedStateFromError() {
+    return {
+      hasError: true,
+    };
+  }
+  componentDidMount() {
+    // 非生产环境加载vconsole
+    if (currentEnv !== "prod" && currentEnv !== "pre") {
+      new VConsole();
+    }
+  }
+
+  render() {
+    return (
+      <ConfigProvider locale={zh_CN} prefixCls={'kx'}>
+        <Provider store={store}>
+          <BrowserRouter>
+            <Routes />
+          </BrowserRouter>
+        </Provider>
+      </ConfigProvider>
+    );
+  }
 }
-
 export default App;
