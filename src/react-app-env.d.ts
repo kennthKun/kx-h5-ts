@@ -40,8 +40,8 @@ declare module '*.png' {
 }
 
 declare module '*.webp' {
-    const src: string;
-    export default src;
+  const src: string;
+  export default src;
 }
 
 declare module '*.svg' {
@@ -160,8 +160,8 @@ declare module "react/jsx-runtime" {
 }
 
 declare module '@'
-declare module 'kx_component'
 declare module 'lodash'
+declare module 'less'
 declare module 'react-redux'
 declare module '@ant-design/icons'
 declare module 'styled-components'

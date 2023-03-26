@@ -1,4 +1,3 @@
-import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import la from './LazyComponent';
 import PrivateRoute from './PrivateRoute';
